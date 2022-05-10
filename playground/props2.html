@@ -8,36 +8,34 @@
 </head>
 <body>
     <div id="app">
-       <app-header v-bind:propsdata="num" v-on:pass="Alertfnc"></app-header>
+        <app-header v-bind:propsdata="num"></app-header>
+        <app-content></app-content>
+        <app-footer></app-footer>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
-        let appHeader = {
-            template:'<button v-on:click="Clickfnc">{{propsdata}}</button>',
+        const appHeader = {
+            template:'<h1>Header{{propsdata}}</h1>',
             props:['propsdata'],
-            methods:{
-                Clickfnc:function(){
-                    this.$emit('pass');
-                }
-            }
         }
-        
+        const appContent = {
+             template: '<h1>Content</h1>',
+        }
+        const appFooter = {
+             template: '<h1>footer</h1>',
+        }
         new Vue({
             el:"#app",
             components:{
-                'app-header':appHeader
+                'app-header':appHeader,
+                'app-content':appContent,
+                'app-footer':appFooter
             },
             data:{
-                num:10
-            },
-            methods:{
-                Alertfnc:function(){
-                    alert("경고");
-                }
+                num:5
             }
 
-        })
-     
+        });
     </script>
 </body>
 </html>
