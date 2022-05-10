@@ -10,10 +10,14 @@
     
     <div id="app">
         <app-header></app-header>
-        <app-content></app-content>
         <app-footer></app-footer>
     </div>
 
+    <div id="app2">
+        <app2-header>{{message}}</app2-header>
+        <app2-content>{{de}}</app2-content>
+        <app2-footer></app2-footer>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
@@ -21,15 +25,42 @@
         Vue.component('app-header',{
             template:'<h1>Header</h1>'
         });
-        Vue.component('app-content',{
-            template:'<h1>Contents</h1>'
-        });
-        Vue.component('app-footer',{
-            template:'<h1>Footer</h1>'
-        });
+        //Vue.component('컴포넌트 이름', '컴포넌트 내용');
         new Vue({
-            el: '#app'
+            el: '#app',
+            components:{ 
+                //여러개의 속성이 들어가므로 s를 붙임
+                //'컴포넌트 이름': '컴포넌트 내용',
+                // 지역 컴포넌트 등록 방식
+                // 지역 컴포넌트로 개발시 아래 속한 컴포넌트들을 알 수 있음.
+                'app-footer' : {
+                    template:'<h1><footer>footer</footer></h1>'
+                }
 
+            },
+            methods:{
+
+            }
+        });
+
+
+        var app2 = new Vue({
+            el:'#app2',
+            components:{
+                'app2-header':{
+                    template: '<h1><header>header2</header></h1>'
+                },
+                'app2-content': {
+                    template: '<h1><content>content2</content></h1>'
+                },
+                'app2-footer': {
+                    template: '<h1><footer>Footer2</footer></h1>'
+                }
+            },
+            data:{
+                message: '안녕',
+                de: '하세요',
+            },
         });
     </script>
 </body>
